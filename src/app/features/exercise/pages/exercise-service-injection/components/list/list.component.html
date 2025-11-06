@@ -1,0 +1,10 @@
+<ul>
+	@for (product of products; track $index) {
+		<li>
+			<span class="me-1" [ngClass]="product.quantity >= 5 ? 'li-red' : null">{{ product.name }}</span>
+			x{{ product.quantity }}
+			<button class="btn btn-primary me-1" (click)="addItem($index)">+</button>
+			<button class="btn btn-primary" (click)="removeItem($index)">-</button>
+		</li>
+	}
+</ul>
