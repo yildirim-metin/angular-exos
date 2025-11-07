@@ -1,0 +1,53 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+	<div>
+		<label for="email">Email</label>
+		<input id="email" type="email" formControlName="email" />
+		@if (registerForm.get("email")?.touched && registerForm.get("email")?.invalid) {
+			<p>The email is required.</p>
+		}
+	</div>
+
+	<div>
+		<label for="password">Password</label>
+		<input id="password" type="password" formControlName="password" />
+		@if (registerForm.get("password")?.touched && registerForm.get("password")?.invalid) {
+			<p>The password is not strong. (8 character, a-z, A-Z, 0-9)</p>
+		}
+	</div>
+
+	<div>
+		<label for="birthDate">Birthdate</label>
+		<input id="birthDate" type="date" formControlName="birthDate" />
+		@if (registerForm.get("birthDate")?.touched && registerForm.get("birthDate")?.invalid) {
+			<p>The birthDate is required.</p>
+		}
+	</div>
+
+	@for (address of addresses.controls; track $index) {
+		<div [formGroup]="address">
+			<div>
+				<label for="street">Street</label>
+				<input id="street" type="text" formControlName="street" />
+				@if (registerForm.get("street")?.touched && registerForm.get("street")?.invalid) {
+					<p>The street is required.</p>
+				}
+			</div>
+
+			<div>
+				<label for="houseNumber">House Number</label>
+				<input id="houseNumber" type="text" formControlName="houseNumber" />
+				@if (registerForm.get("houseNumber")?.touched && registerForm.get("houseNumber")?.invalid) {
+					<p>The houseNumber is required.</p>
+				}
+			</div>
+
+			@if ($index > 0) {
+				<button (click)="removeAddress($index)">Remove address</button>
+			}
+		</div>
+	}
+
+	<button (click)="addAdress()">Add address</button>
+
+	<button type="submit" [disabled]="registerForm.invalid">Register</button>
+</form>
