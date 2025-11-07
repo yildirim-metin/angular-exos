@@ -30,7 +30,7 @@
 	<div class="card-body">
 		<!-- Appel tes composants ici! -->
 		<!-- <add></add> -->
-		<form-product></form-product>
+		<form-product (submitEvent)="addProduct($event)"></form-product>
 		<list [elements]="products()" (removeItemEvent)="removeItem($event)" (addItemEvent)="addItem($event)"></list>
 	</div>
 </section>
