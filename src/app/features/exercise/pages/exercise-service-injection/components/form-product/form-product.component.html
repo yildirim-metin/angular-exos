@@ -1,0 +1,19 @@
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+	<div>
+		<label for="name">Name: </label>
+		<input type="text" id="name" formControlName="name" />
+		@if (productForm.get("name")?.touched && productForm.get("name")?.invalid) {
+			<p>Name is mandatory between 2 to 50 characters</p>
+		}
+	</div>
+
+	<div>
+		<label for="quantity">Quantity: </label>
+		<input type="number" id="quantity" formControlName="quantity" />
+		@if (productForm.get("quantity")?.touched && productForm.get("quantity")?.invalid) {
+			<p>Quantity is mandatory between 0 to 999</p>
+		}
+	</div>
+
+	<button class="btn btn-primary" type="submit">Add product</button>
+</form>
