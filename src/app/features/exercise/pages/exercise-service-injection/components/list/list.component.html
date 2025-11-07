@@ -1,5 +1,5 @@
 <ul>
-	@for (product of products; track $index) {
+	@for (product of elements(); track $index) {
 		<li>
 			<span class="me-1" [ngClass]="product.quantity >= 5 ? 'li-red' : null">{{ product.name }}</span>
 			x{{ product.quantity }}

@@ -1,6 +1,7 @@
 import {Component, inject} from "@angular/core";
-import {ProductService, Product} from "../../services/product-service";
+import {ProductService} from "../../services/product-service";
 import {FormsModule} from "@angular/forms";
+import {Product} from "../../models/product";
 
 @Component({
 	selector: "add",

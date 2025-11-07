@@ -1,6 +1,6 @@
-import {Component, inject} from "@angular/core";
-import {Product, ProductService} from "../../services/product-service";
+import {Component, input, output} from "@angular/core";
 import {NgClass} from "@angular/common";
+import {Product} from "../../models/product";
 
 @Component({
 	selector: "list",
@@ -9,15 +9,16 @@ import {NgClass} from "@angular/common";
 	styleUrl: "./list.component.scss",
 })
 export class ListComponent {
-	private readonly _productService: ProductService = inject(ProductService);
+	elements = input.required<Product[]>();
 
-	products: Product[] = this._productService.products();
+	addItemEvent = output<number>();
+	removeItemEvent = output<number>();
 
 	addItem(index: number) {
-		this._productService.increment(index);
+		this.addItemEvent.emit(index);
 	}
 
 	removeItem(index: number) {
-		this._productService.remove(index);
+		this.removeItemEvent.emit(index);
 	}
 }

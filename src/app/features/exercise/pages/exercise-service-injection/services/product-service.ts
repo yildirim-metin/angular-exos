@@ -1,4 +1,5 @@
 import {Injectable, signal} from "@angular/core";
+import {Product} from "../models/product";
 
 @Injectable({
 	providedIn: "root",
@@ -7,9 +8,9 @@ export class ProductService {
 	products = signal<Product[]>([]);
 
 	add(product: Product) {
-		let productsTmp: Product[] = this.products();
-		productsTmp.push(product);
-		this.products.set(productsTmp);
+		const tab: Product[] = [...this.products(), product];
+		console.log(tab);
+		this.products.set(tab);
 	}
 
 	increment(index: number) {
@@ -34,9 +35,4 @@ export class ProductService {
 			this.products.set(this.products().filter((_, i) => i != index));
 		}
 	}
-}
-
-export interface Product {
-	name: string;
-	quantity: number;
 }
